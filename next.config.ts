@@ -60,7 +60,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "api.ecoholidaysnepal.com",
+        hostname: "hlt-api.flamingoitstudio.net",
       },
     ],
     formats: ["image/webp", "image/avif"],
@@ -68,26 +68,42 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60,
   },
   async redirects() {
-    const response = await fetch(
-      `${process.env.PRODUCTION_SERVER}/urlredirects`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        sitekey: `${process.env.SITE_KEY}`
-      },
-    }
-    );
+    try {
+      const response = await fetch(
+        `${process.env.PRODUCTION_SERVER}/urlredirects`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          sitekey: `${process.env.SITE_KEY}`
+        },
+      }
+      );
 
-    const redirection = await response.json();
-    const data = await redirection.data;
-    const redirectionURls = data?.map((a: any) => {
-      return {
-        source: a.source,
-        destination: a.destination,
-        permanent: true,
-      };
-    });
-    return [...redirectionURls, ...redirection_data];
+      if (!response.ok) {
+        throw new Error(`Failed to fetch redirects: ${response.status} ${response.statusText}`);
+      }
+
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+         // Silently fail or log warning if not JSON, to avoid breaking build
+         console.warn("Complete redirects API returned non-JSON response");
+         return [...redirection_data]; 
+      }
+
+      const redirection = await response.json();
+      const data = await redirection.data;
+      const redirectionURls = data?.map((a: any) => {
+        return {
+          source: a.source,
+          destination: a.destination,
+          permanent: true,
+        };
+      }) || [];
+      return [...redirectionURls, ...redirection_data];
+    } catch (error) {
+      console.error("Error fetching redirects:", error);
+      return [...redirection_data];
+    }
   },
 };
 
