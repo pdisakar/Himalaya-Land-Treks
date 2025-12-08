@@ -52,6 +52,8 @@ import type React from "react";
 import TripSearch from "@/components/TripSearch/TripSearch";
 export default async function Home(): Promise<React.ReactElement> {
   const [data] = await Promise.all([getHomeData()]);
+  console.log(data);
+
   const testimonialsAvatars =
     "featured_testimonials" in data && Array.isArray(data.featured_testimonials)
       ? data.featured_testimonials
@@ -96,6 +98,10 @@ export default async function Home(): Promise<React.ReactElement> {
         lead="The Himalayan region offers some of the world's best treks. Among them, the popular ones are Everest Base Camp, Annapurna Base Camp, Manaslu Circuit, Everest Heli Trek, Langtang Valley, and Annapurna Circuit Trek. Each trek offers a unique experience and breathtaking views of the Himalayan mountains."
         linkTo={BASE_URL + data.category_section_a.urlinfo.url_slug}
       />
+
+      <DepartureTrips containerClass="container" classes="common-box pt-0 " title="Join Upcoming Departures" lead="Looking for an adventure-packed trip to Nepal? Look no further! Book this trip with us and get ready to experience the stunning natural beauty and adventure activities that Nepal has to offer.
+" />
+
       <BestSellingPackages
         titleClassName="text-center"
         className="common-box pb-0 border-t border-t-border"
@@ -117,7 +123,6 @@ export default async function Home(): Promise<React.ReactElement> {
         title={`Whats our <b>Clients Say</b>`}
         classes="common-box featured-testimonial bg-secondary before:-z-10 before:inset-0 before:absolute before:bg-[url('/path-pattern.png')] before:bg-repeat before:opacity-10 z-10"
       />
-      <DepartureTrips containerClass="container" classes="common-box bg-[#F2ECDC] z-10 before:-z-10 before:inset-0 before:absolute before:bg-[url('/path-pattern.png')] before:bg-repeat before:opacity-100 " title="Upcoming <b>Depatures</b>" lead="These are the most visited and popular Nepal Holidays destinations." />
       <FeaturedBlog
         renderData={data.featured_blogs}
         classes="common-box"

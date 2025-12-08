@@ -175,13 +175,13 @@ export default function DepartureTrips({
                 return (
                   <CarouselItem key={idx} className=" basis-auto px-1.5">
 
-                    <button className={`bg-white shadow-[0_0_3px_#0000001a_inset] relative max-w-[70px] px-4 py-2 font-semibold text-sm font-secondary leading-[1.2] rounded-[10px] uppercase
-                  ${isActive ? "border border-secondary text-secondary before:absolute before:bottom-[-1px] before:left-[calc(45%+1px)] before:w-[9px] before:h-[2px] before:bg-white before:z-[2] after:absolute after:block after:bottom-[-5px] after:left-[45%] after:w-[11px] after:h-[11px] after:bg-white after:rotate-45 after:border after:border-headings after:z-[-1]" : "text-secondary"}`} onClick={() => { setActiveIdx(idx); handleDateChanged(formatDate(itm, "YYYY-mm")) }}>{formatDate(itm, "MMM YYYY")}</button>
+                    <button className={`bg-white  relative max-w-[70px] px-4 py-2 font-semibold text-sm font-secondary leading-[1.2] shadow-sm uppercase
+                  ${isActive ? "border border-headings text-headings before:absolute before:bottom-[-1px] before:left-[calc(45%+1px)] before:w-[9px] before:h-[2px] before:bg-white before:z-[2] after:absolute after:block after:bottom-[-5px] after:left-[45%] after:w-[11px] after:h-[11px] after:bg-white after:rotate-45 after:border after:border-headings after:z-[-1]" : "text-headings"}`} onClick={() => { setActiveIdx(idx); handleDateChanged(formatDate(itm, "YYYY-mm")) }}>{formatDate(itm, "MMM YYYY")}</button>
                   </CarouselItem>
                 )
               })}
             </CarouselContent>
-            <div className="navigation absolute pointer-events-none left-0 right-0 top-[11px] flex flex-wrap justify-between  gap-x-2.5 items-center text-center [&>button]:text-white [&>button]:border-0  [&>button]:bg-primary [&>button]:h-7 [&>button]:w-7 [&>button]:rounded-full [&>button]:shadow-[0_0_6px_12px_#f2ecdc] [&>button>svg]:h-3 [&>button>svg]:w-3">
+            <div className="navigation absolute pointer-events-none left-0 right-0 top-[11px] flex flex-wrap justify-between  gap-x-2.5 items-center text-center [&>button]:text-white [&>button]:border-0  [&>button]:bg-primary [&>button]:h-7 [&>button]:w-7 [&>button]:rounded-full [&>button]:shadow-[0_0_6px_12px_#f2f4f5] [&>button>svg]:h-3 [&>button>svg]:w-3">
               <CarouselPrevious className="gap-0.5 items-center pointer-events-auto disabled:opacity-0 disabled:pointer-events-none disabled:cursor-not-allowed backdrop-blur-md">
                 <svg
                   className="rotate-180 h-3 w-3"
@@ -226,7 +226,7 @@ export default function DepartureTrips({
 
               return (
                 <div className="item [&+.item]:mt-7 leading-[1.2] font-secondary" key={index}>
-                  <h3 className="mb-2.5 text-[1.375rem] font-semibold text-secondary"><Link href={`${PACKAGE_BASE_URL}${urlinfo.url_slug}`}>{package_title}</Link></h3>
+                  <h3 className="mb-2.5 text-[1.375rem] font-semibold text-headings"><Link href={`${PACKAGE_BASE_URL}${urlinfo.url_slug}`}>{package_title}</Link></h3>
                   <ul className="flex flex-wrap flex-[0_0_1] md:[&>li]:flex-[1_0_0] bg-white p-6 shadow-sm rounded-[10px] items-center gap-3 justify-between">
                     <li>
                       <span className="text-headings font-medium font-secondary capitalize">{package_duration} {package_duration_type}</span>
