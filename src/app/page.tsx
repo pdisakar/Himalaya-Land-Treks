@@ -49,12 +49,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 
 import type React from "react";
+import TripSearch from "@/components/TripSearch/TripSearch";
 export default async function Home(): Promise<React.ReactElement> {
   const [data] = await Promise.all([getHomeData()]);
   const testimonialsAvatars =
     "featured_testimonials" in data && Array.isArray(data.featured_testimonials)
       ? data.featured_testimonials
-.filter((itm: any) => itm?.avatar !== null)
+        .filter((itm: any) => itm?.avatar !== null)
         .map((a: { avatar: any }) => a.avatar)
       : [];
   const bannerData = data.pagecontent.carousel.content[0];
@@ -68,14 +69,25 @@ export default async function Home(): Promise<React.ReactElement> {
         video={false}
         className=""
       />
-      <FeaturedCategories
+      <TripSearch
+
+        featuredCategory={data.featured_categories} />
+      {/* <FeaturedCategories
         title="Explore your ways out…"
         lead="Discover the best of the Himalayas with our featured categories, showcasing the most popular and beloved tours."
         renderData={data.featured_categories}
         className="common-box wave-bottom bg-light"
-      />
+      /> */}
 
       {/* <Service className="pt-6 lg:pt-8" /> */}
+
+
+      <FeaturedReview
+        renderData={data.featured_testimonials}
+        title={`Whats our <b>Clients Say</b>`}
+        classes="common-box featured-testimonial"
+      />
+
       <BestSellingPackages
         className="common-box"
         titleClassName="text-center"

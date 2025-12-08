@@ -39,7 +39,7 @@ const nextConfig: NextConfig = {
   },
   serverExternalPackages: ["node-html-parser"],
   compiler: {
-    removeConsole: true,
+    removeConsole: false,
   },
   logging: {
     fetches: {

@@ -17,7 +17,7 @@ interface SmartSearchProps {
 }
 
 const SmartSearch = ({ className }: SmartSearchProps) => {
-const [packages, setPackages] = useState<PackageItem[]>([]);
+  const [packages, setPackages] = useState<PackageItem[]>([]);
   const [isPending, startTransition] = useTransition();
   const [filterData, setFilterData] = useState({
     title: "",
@@ -30,12 +30,12 @@ const [packages, setPackages] = useState<PackageItem[]>([]);
         filterString += `&_name=${filterData.title}`;
 
       const response = await fetch(`${PRODUCTION_SERVER}/filterpackages?${filterString}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            sitekey: SITE_KEY
-          },
-        });
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          sitekey: SITE_KEY
+        },
+      });
 
       const data = await response.json();
       const newData: PackageItem[] = data.data.content;
@@ -60,14 +60,14 @@ const [packages, setPackages] = useState<PackageItem[]>([]);
   return (
     <>
       <div className={cn('trip-search relative hidden md:block', className)} id="trip_search">
-        <form className="z-20 flm-form bg-white shadow p-1 rounded-full relative">
+        <form className="z-20 flm-form bg-body-bg p-1 rounded-full relative">
           <div className="form-group">
             <label htmlFor="trip_search_input" hidden>
               Location
             </label>{" "}
             <input
               type="text"
-              className="form-control border-transparent rounded-full"
+              className="form-control border-transparent rounded-full bg-transparent"
               placeholder="Where are you going?"
               id="trip_search_input"
               onChange={(e) =>
@@ -80,7 +80,7 @@ const [packages, setPackages] = useState<PackageItem[]>([]);
           </div>
           <button
             type="submit"
-            className="absolute right-1 top-1 w-[42px] rounded-full inline-flex justify-center items-center text-center min-h-[42px] bg-secondary text-white"
+            className="absolute right-1 top-1 w-[42px] rounded-full inline-flex justify-center items-center text-center min-h-[42px] bg-primary text-white"
           >
             {isPending ? (
               <i className="icon h-5 w-5" role="status">
@@ -104,7 +104,7 @@ const [packages, setPackages] = useState<PackageItem[]>([]);
               </i>
             )}
           </button>
-          
+
         </form>
         {filterData.title &&
           <div className="serach-result top-[calc(100%_-_30px)] pt-[60px] text-left max-h-[500px] custom-scroll-bar  overflow-x-hidden overflow-y-auto">
@@ -137,7 +137,7 @@ const [packages, setPackages] = useState<PackageItem[]>([]);
                         <Link
                           href={`${PACKAGE_BASE_URL}${urlinfo.url_slug}`}
                           className="item flex items-center gap-5 p-2 -m-2 hover:bg-light hover:shadow-sm rounded"
-                          //onClick={discardSearch}
+                        //onClick={discardSearch}
                         >
                           <figure className="intro-img relative flex-[0_0_120px] max-w-[70px]">
                             <span className="rounded relative overflow-hidden block image-slot before:pt-[101.307%]">
@@ -166,25 +166,25 @@ const [packages, setPackages] = useState<PackageItem[]>([]);
                               <li className="duration">
                                 {package_duration < 10
                                   ? "0" +
-                                    package_duration +
-                                    " " +
-                                    package_duration_type
+                                  package_duration +
+                                  " " +
+                                  package_duration_type
                                   : package_duration +
-                                    " " +
-                                    package_duration_type}
+                                  " " +
+                                  package_duration_type}
                               </li>
-{(total_testimonials ?? 0) > 0 && (
+                              {(total_testimonials ?? 0) > 0 && (
                                 <li className="divider text-muted font-normal opacity-50 hidden md:block">
                                   |
                                 </li>
                               )}
-{(total_testimonials ?? 0) > 0 && (
+                              {(total_testimonials ?? 0) > 0 && (
                                 <li className="review-rating">
                                   <i
                                     className="ratings__5"
                                     style={{ zoom: 0.85 }}
                                   ></i>
-{(total_testimonials ?? 0) <= 9
+                                  {(total_testimonials ?? 0) <= 9
                                     ? "0" + total_testimonials + " " + "reviews"
                                     : total_testimonials + " " + "reviews"}
                                 </li>
@@ -198,7 +198,7 @@ const [packages, setPackages] = useState<PackageItem[]>([]);
                 </ul>
               </div>
             )}
-          </div> }
+          </div>}
       </div>
     </>
   );

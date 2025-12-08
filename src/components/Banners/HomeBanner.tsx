@@ -60,14 +60,14 @@ export default function Banner({
       <div className="banner-caption absolute bottom-[15%] inset-x-0 z-20 text-left flex items-center justify-center flex-col">
         <div className="container">
           <div className="inner-wrap leading-[1.25] max-w-[750px] mx-auto">
-            <span className="subtitle hidden mb-3 sm:block tex-xs text-white drop-shadow font-medium pb-2.5">
+            {/* <span className="subtitle hidden mb-3 sm:block tex-xs text-white drop-shadow font-medium pb-2.5">
                   4.5<i className="ratings__5"></i>
                   {globalData?.ta_review_count} Google reviews
-            </span>
-            <h2 className="brand-heading uppercase font-extrabold text-white text-[1.5rem] md:text-[1.75rem] lg:text-4xl xl:text-[52px] drop-shadow leading-[1]">
+            </span> */}
+            <h2 className="brand-heading capitalize text-center font-extrabold text-white text-[1.5rem] md:text-[1.75rem] lg:text-4xl xl:text-[52px] drop-shadow leading-[1]">
               {renderData?.caption}
             </h2>
-            <SmartSearch className="mt-6 max-w-[85%]" />
+            {/* <SmartSearch className="mt-6 max-w-[85%]" /> */}
           </div>
         </div>
       </div>

@@ -40,16 +40,16 @@ const config: Config = {
       },
       colors: {
         white: "#ffffff",
-        primary: "#008f3c",
+        primary: "#faaf3a",
         'primary-100': "#26a059",
         secondary: "#004956",
-        headings: "#082428",//#032139
+        headings: "#0b3248",//#032139
         navbar: "#012645",
-        body: "#313137", //"#012C3F",
+        body: "#1b2b3a", //"#012C3F",
         border: "#cfd8e0",
         muted: "#6c757d",
         footer: "#313137",
-        "body-bg": "#FFFFFF",
+        "body-bg": "#f2f4f5",
         light: "#E3E8E5",
         "light-500": "#f9fbff",
         success: "#1cb386",
