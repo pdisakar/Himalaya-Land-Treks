@@ -89,11 +89,11 @@ export default async function Home(): Promise<React.ReactElement> {
       />
 
       <BestSellingPackages
-        className="common-box"
+        className="common-box pt-0"
         titleClassName="text-center"
         renderData={data.featured_packages}
-        title={`Featured <b>Trekking in Nepal</b>`}
-        lead="Some of the best rated Nepal Trekking"
+        title={`Best Seller Treks`}
+        lead="The Himalayan region offers some of the world's best treks. Among them, the popular ones are Everest Base Camp, Annapurna Base Camp, Manaslu Circuit, Everest Heli Trek, Langtang Valley, and Annapurna Circuit Trek. Each trek offers a unique experience and breathtaking views of the Himalayan mountains."
         linkTo={BASE_URL + data.category_section_a.urlinfo.url_slug}
       />
       <BestSellingPackages

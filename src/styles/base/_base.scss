@@ -371,7 +371,7 @@ article {
   h1,
   h2,
   h3 {
-    @apply font-normal font-secondary;
+    @apply font-bold font-secondary;
     //text-shadow: 3px 5px 0 #e8e8e8;;
     // span{
     //   @apply font-extrabold;
@@ -404,7 +404,7 @@ article {
     }
   }
   .lead {
-    @apply text-base font-medium mt-[5px] max-w-[650px];
+    @apply text-sm font-medium mt-[5px] max-w-[650px];
     &:not([class*="text-[#"]) {
       @apply text-muted;
     }

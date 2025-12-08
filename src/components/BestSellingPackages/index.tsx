@@ -45,7 +45,7 @@ export default function BestSellingPackages({
         <Carousel className="[&>.overflow-hidden]:-mx-3">
           <div
             className={cn(
-              'title flex items-center justify-between',
+              'title flex items-end justify-between',
               titleClassName
             )}>
             <div className="text-left">
