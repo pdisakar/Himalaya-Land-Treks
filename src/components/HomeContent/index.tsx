@@ -16,12 +16,7 @@ interface PageItem {
 export default function HomeContent({ renderData }: PageProps) {
   const { page_title, page_description } = renderData;
   return (
-    <section className="relative z-20 overflow-hidden home-content bg-light lg:bg-white common-box">
-      <span className="absolute hidden lg:block top-0 right-[-2px] h-[150px] w-[150px] z-20 text-light icon">
-        <svg>
-          <use xlinkHref="./icons.svg#hiker"></use>
-        </svg>
-      </span>
+    <section className=" common-box">
       <div className="container">
         <div className="lg:grid lg:grid-cols-11 lg:gap-6">
 
@@ -41,7 +36,7 @@ export default function HomeContent({ renderData }: PageProps) {
           </div>
           <div className="lg:order-1 lg:col-span-5 relative z-50">
 
-            <Searvice />
+            {/* <Searvice /> */}
           </div>
         </div>
       </div>

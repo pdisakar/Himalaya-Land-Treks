@@ -46,7 +46,6 @@ export default function FeaturedReview({ renderData, title, classes = "" }: Feat
   const { globalData } = useGlobalData();
 
   const InlineReviewCard = ({ review }: { review: Testimonial }) => {
-    console.log(review);
 
     return (
       <div className="review-card rounded-lg p-6 shadow-sm bg-white border border-gray-100 h-full flex flex-col">

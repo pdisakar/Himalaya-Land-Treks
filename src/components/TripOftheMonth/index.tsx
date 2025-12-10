@@ -1,43 +1,30 @@
-"use client";
-import { BASE_URL, IMAGE_URL } from "@/lib/constants";
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+import { BASE_URL, IMAGE_URL } from '@/lib/constants';
+import { PackageContent } from '@/types';
+import Image from 'next/image';
+import Link from 'next/link';
 
-interface TripModuleProps { tripData: any }
+interface TripModuleProps {
+  tripData: PackageContent;
+}
 
 function TripModule({ tripData }: TripModuleProps) {
-  let {
-    banner,
-    discount,
-    package_duration_type,
-    package_duration,
-    package_grade,
-    package_price,
-    rating,
-    alt,
-    grade,
+  const {
     package_title,
     urlinfo,
     featured,
-    group_default_price,
   } = tripData;
 
-  const total_testimonials = 10;
   const slug = urlinfo.url_slug;
-  const activity = "Trekking and Tour";
-  const difficulty = "Moderate to Hard";
-  const title = package_title;
 
-const renderImage = (className: string, fill = false) => (
+  const renderImage = (className: string) => (
     <Link
       href={BASE_URL + slug}
-      className={`rounded image-slot before:pt-[42%] ${className} `}
-    >
+      className={`image-slot before:pt-[60%] ${className} `}>
       {featured && (
         <Image
-          src={`${IMAGE_URL}${banner.full_path}`}
-          alt={featured.alt ? featured.alt_text : package_title}
-          //fill={fill}
+          src={`${IMAGE_URL}${featured.full_path}`}
+          alt={featured.alt_text || package_title}
           width={306}
           height={310}
           sizes="(min-width: 400px) 50vw, 100vw"
@@ -49,18 +36,53 @@ const renderImage = (className: string, fill = false) => (
   );
 
   return (
-    <div className="item bg-white text-white shadow-base p-0.5 rounded">
-      <figure className="intro-img relative ">
-        {renderImage("")}
-        <figcaption className=" bg-gradient-to-t from-black/50 to-black/0 absolute inset-x-0 bottom-0 z-10 p-6 lg:p-8">
+    <div className="item lg:col-span-2 overflow-hidden">
+      <figure className="intro-img relative lg:before:absolute before:top-[35px] before:right-0 before:content-[''] before:h-full before:w-40 before:bg-gradient-to-l before:from-white before:to-transparent before:z-[11]">
+        {renderImage('')}
+      </figure>
+    </div>
+  );
+}
+
+interface TripOftheMonthProps {
+  renderData: PackageContent;
+  title?: string;
+  subTitle?: string;
+}
+
+export default function TripOftheMonth({
+  renderData,
+  title,
+  subTitle,
+}: TripOftheMonthProps) {
+  const {
+    total_testimonials,
+    package_title,
+    package_duration,
+    package_duration_type,
+    group_default_price
+  } = renderData;
+
+  const package_total_testimonials = total_testimonials || 10;
+
+  return (
+    <section className="trip-of-the-month bg-white relative before:absolute before:top-0 before:left-0 before:w-full before:content-[''] before:h-[35px] before:bg-body-bg">
+      <div className="container grid lg:grid-cols-3">
+        <TripModule tripData={renderData} />
+        <div className="trip-of-the-month-meta lg:grid-cols-1  my-auto lg:-ml-6 z-30 py-6">
+          <div className="title">
+            <span className='subtitle'>Trip Of the Month</span>
+            <h2>{package_title}</h2>
+
+          </div>
           <ul className="package-meta flex gap-6 items-center lg:pt-6 leading-[1.4] text-sm md:text-md">
             <li className="duration relative pl-10">
-              <i className="icon h-8 w-8 text-white top-1 absolute left-0">
+              <i className="icon h-8 w-8 top-1 absolute left-0">
                 <svg>
                   <use xlinkHref="/icons.svg#duration" />
                 </svg>
               </i>
-              <span className="block text-xs text-white font-medium">
+              <span className="block text-xs  font-medium">
                 Duration
               </span>
               <span className="font-bold text-md capitalize">
@@ -69,13 +91,13 @@ const renderImage = (className: string, fill = false) => (
                   : `${package_duration} ${package_duration_type}`}
               </span>
             </li>
-              <li className="duration relative pl-10">
-              <i className="icon h-8 w-8 text-white top-1 absolute left-0">
+            <li className="duration relative pl-10">
+              <i className="icon h-8 w-8  top-1 absolute left-0">
                 <svg>
                   <use xlinkHref="/icons.svg#best-price" />
                 </svg>
               </i>
-              <span className="block text-xs text-white font-medium">
+              <span className="block text-xs  font-medium">
                 Price Starts From
               </span>
               <span className="font-bold text-lg">
@@ -83,33 +105,10 @@ const renderImage = (className: string, fill = false) => (
               </span>
             </li>
           </ul>
-      
-        </figcaption>
-      </figure>
-    </div>
-  );
-}
-
-interface TripOftheMonthProps { renderData: any; title?: string; subTitle?: string }
-
-export default function TripOftheMonth({ renderData, title, subTitle }: TripOftheMonthProps) {
-  const { total_testimonials, package_title } = renderData;
-  const package_total_testimonials = total_testimonials || 10;
-  return (
-    <section className="trip-of-the-month common-box pt-0">
-      <div className="title text-center">
-        <span className="subtitle">Trip Of the Month</span>
-        <h2>{package_title}</h2>
-        <span className="review-rating text-sm font-medium text-muted">
-          <i className="ratings__5"></i> 5.0 from{" "}
-          {`${
-            package_total_testimonials <= 9 ? "0" : " "
-          }${package_total_testimonials} reviews`}
-        </span>
+        </div>
       </div>
-      <div className="container">
-        <TripModule tripData={renderData} />
-      </div>
+
+
     </section>
   );
 }
