@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useRef, useState } from "react";
-import { PRODUCTION_SERVER, SITE_KEY } from "@/lib/constants";
-import { useToast } from "@/hooks/use-toast";
-import { BadgeInfo, Check, Send } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useRef, useState } from 'react';
+import { PRODUCTION_SERVER, SITE_KEY } from '@/lib/constants';
+import { useToast } from '@/hooks/use-toast';
+import { BadgeInfo, Check, Send } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface NewsletterProps {
   title: string;
@@ -34,15 +34,15 @@ export default function Newsletter({
     setError(false);
 
     const form = event.currentTarget;
-    const name = (form.elements.namedItem("name") as HTMLInputElement)?.value;
-    const email = (form.elements.namedItem("email") as HTMLInputElement)?.value;
+    const name = (form.elements.namedItem('name') as HTMLInputElement)?.value;
+    const email = (form.elements.namedItem('email') as HTMLInputElement)?.value;
 
     try {
       const res = await fetch(`${PRODUCTION_SERVER}/newsletter/subscribe`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           sitekey: SITE_KEY,
         },
         body: JSON.stringify({ name, email }),
@@ -70,7 +70,7 @@ export default function Newsletter({
               <i className="icon h-5 w-5 text-danger">
                 <BadgeInfo />
               </i>
-              <span>{result.message || "Something went wrong."}</span>
+              <span>{result.message || 'Something went wrong.'}</span>
             </div>
           ),
         });
@@ -83,7 +83,7 @@ export default function Newsletter({
             <i className="icon h-5 w-5 text-danger">
               <BadgeInfo />
             </i>
-            <span>{err.message || "Network error."}</span>
+            <span>{err.message || 'Network error.'}</span>
           </div>
         ),
       });
@@ -93,26 +93,28 @@ export default function Newsletter({
   };
 
   return (
-    <div className={cn("newsletter md:grid md:grid-cols-2 md:gap-6", className)}>
-      <div className="flex items-center leading-[1]">
-        <svg height={70} width={70} className="text-primary flex-[0_0_70px]"><use xlinkHref="/icons.svg#newsletter-envelope" /></svg>
-        <div className="flex-[0_0_calc(100%_-_70px)] pl-5">
-          <h3
-            className="text-xl md:text-[2.25rem] font-light text-headings font-secondary mb-0"
-            dangerouslySetInnerHTML={{ __html: title }}
-          />
-          {subTitle && <p className=" tracking-wide text-base font-medium pt-1.5 text-muted">{subTitle}</p>}
-        </div>
+    <div className={cn('newsletter', className)}>
+      <div className=" leading-[1]">
+        <h3
+          className="uppercase mb-1 font-semibold text-white/85 text-[1.25rem] font-secondary"
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
+        {subTitle && (
+          <p className=" tracking-wide leading-[1.4] text-base pt-1.5 text-white/70">
+            {subTitle}
+          </p>
+        )}
       </div>
 
       <form
         ref={formRef}
         onSubmit={subscribe}
         id="newsletter-form"
-        className="z-20 relative pr-[110px] md:pr-[170px] mt-6 md:mt-0 flex flex-col overflow-hidden"
-      >
-        <div className="form-group">
-          <label htmlFor="name" hidden>
+        className="mt-6 flex flex-col overflow-hidden space-y-3">
+        <div className="form-group bg-white/90 rounded-lg">
+          <label
+            htmlFor="name"
+            hidden>
             Full Name
           </label>
           <input
@@ -121,12 +123,14 @@ export default function Newsletter({
             name="name"
             required
             placeholder="Full Name*"
-            className="form-control outline-none w-full p-[8px_0] bg-transparent font-normal border-0 text-body md:text-[1.25rem] placeholder:text-muted"
+            className="form-control outline-none w-full py-2 px-3 bg-transparent font-normal border-0 text-body placeholder:text-muted  placeholder:text-base"
           />
         </div>
 
-        <div className="form-group flex-1 border-t-2 border-t-border">
-          <label htmlFor="email" hidden>
+        <div className="form-group bg-white/90 rounded-lg">
+          <label
+            htmlFor="email"
+            hidden>
             Email
           </label>
           <input
@@ -135,16 +139,15 @@ export default function Newsletter({
             name="email"
             required
             placeholder="Email Address*"
-            className="form-control outline-none w-full p-[8px_0] bg-transparent font-normal border-0 text-body md:text-[1.25rem] placeholder:text-muted"
+            className="form-control outline-none w-full py-2 px-3 bg-transparent font-normal border-0 text-body placeholder:text-muted placeholder:text-base"
           />
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className=" absolute right-0 top-1/2 -translate-y-1/2 bg-primary text-white text-sm md:text-base  uppercase inline-flex px-4 py-2 md:p-[.8375rem_2.25rem]  border-0 items-center font-medium rounded"
-        >
-          {loading ? "Submitting..." : btnLabel}
+          className=" bg-primary text-white text-sm md:text-base  uppercase py-2  border-0 items-center font-medium rounded-lg">
+          {loading ? 'Submitting...' : btnLabel}
         </button>
       </form>
     </div>
