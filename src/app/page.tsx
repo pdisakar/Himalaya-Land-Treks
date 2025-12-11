@@ -110,7 +110,7 @@ export default async function Home(): Promise<React.ReactElement> {
 
       <BestSellingPackages
         titleClassName="text-center"
-        className="common-box pb-0"
+        className="common-box"
         testimonialsAvatars={testimonialsAvatars}
         renderData={data.category_section_a.packages}
         title={`Featured Trips`}
@@ -124,9 +124,9 @@ export default async function Home(): Promise<React.ReactElement> {
       <FeaturedBlog
         renderData={data.featured_blogs}
         classes="common-box"
-        title="From Our <b>Blog</b>"
+        title="Latest Posts"
         subTitle="Travel related news and updates"
-        lead="Get the latest travel tips, destination guides, and inspiration from our travel experts."
+        lead="Explore the breathtaking beauty of the Himalayas with our expert travel guide. Discover hidden trails, remote villages, and majestic peaks."
         limit={4}
       />
     </>

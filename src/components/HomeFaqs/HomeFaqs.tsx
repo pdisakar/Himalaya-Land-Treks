@@ -57,7 +57,7 @@ const AccordionItem = ({ item, isActive, onClick }: AccordionItemProps) => {
   return (
     <div
       className={`border-b border-gray-200 transition-colors duration-300
-      ${isActive ? 'bg-headings text-body-bg' : 'bg-body-bg'}`}>
+      ${isActive ? 'bg-headings text-body-bg' : 'bg-white'}`}>
       {/* Header */}
       <button
         onClick={onClick}
