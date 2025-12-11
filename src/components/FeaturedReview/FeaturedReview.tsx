@@ -12,6 +12,7 @@ import { BASE_URL } from "@/lib/constants";
 import { Testimonial } from "@/types";
 import { useGlobalData } from "@/context/globalContext";
 import Image from "next/image";
+import Service from "../services";
 
 interface FeaturedReviewProps {
   renderData: Testimonial[];
@@ -19,28 +20,6 @@ interface FeaturedReviewProps {
   classes?: string;
 }
 
-const services = [
-  {
-    title: "Our Enthusiastic Team",
-    description: "With a group of skilled and trained youths ready to prove themselves",
-    svg: "our-enthusiastic-team"
-  },
-  {
-    title: "Best Price Guarantee",
-    description: "We are happy to provide a best price to on smart packages.",
-    svg: "best-price-guarantee"
-  },
-  {
-    title: "24/7 Support",
-    description: "We have 24 hours of customer service with updated information.",
-    svg: "24-7-support"
-  },
-  {
-    title: "Your safety is our top priority",
-    description: "In an utmost display of respect and impeccable show of concern",
-    svg: "your-safety-is-our-top-priority"
-  }
-]
 
 export default function FeaturedReview({ renderData, title, classes = "" }: FeaturedReviewProps) {
   const { globalData } = useGlobalData();
@@ -82,30 +61,7 @@ export default function FeaturedReview({ renderData, title, classes = "" }: Feat
   return (
     <aside className={classes}>
       <div className="container">
-        <div className="our-services">
-          <ul className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {
-              services.map((itm, idx) => (
-                <li key={idx} className="flex gap-4">
-
-                  <svg className="h-[45px] w-[45px] shrink-0">
-                    <use xlinkHref={`/icons.svg#${itm.svg}`} />
-                  </svg>
-                  <div className="service-content">
-                    <h3 className="font-medium text-headings">
-                      {itm.title}
-                    </h3>
-                    <p className="text-muted text-sm mt-1">
-                      {itm.description}
-                    </p>
-                  </div>
-
-                </li>
-              ))
-            }
-
-          </ul>
-        </div>
+      <Service/>
         <div className="featured-review mt-6">
           <Carousel className="md:[&>.overflow-hidden]:-m-3 [&>.overflow-hidden]:-m-1.5">
             <CarouselContent>

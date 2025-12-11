@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import React from "react";
+import { cn } from '@/lib/utils';
+import React from 'react';
 
 interface ServiceProps {
   className?: string;
@@ -14,69 +14,45 @@ interface ServiceItem {
 }
 
 export default function Service({ className }: ServiceProps) {
-  const value: ServiceItem[] = [
+  const services = [
     {
-      img: (
-        <svg>
-          <use xlinkHref="/icons.svg#customize_itinerary" fill="currentColor" />
-        </svg>
-      ),
-      title: "Tailor Made Itinerary",
-      body: "Based on your budget and time-bound, we design the best suitable itinerary for your vacation.",
+      title: 'Our Enthusiastic Team',
+      description:
+        'With a group of skilled and trained youths ready to prove themselves',
+      svg: 'our-enthusiastic-team',
     },
     {
-      img: (
-        <svg>
-          <use xlinkHref="/icons.svg#badge" fill="currentColor" />
-        </svg>
-      ),
-      title: "Winner of Tripadvisor Excellence Award",
-      body: "Our uncompromising services have offered us Tripadvisor Excellence Award with excellent feedback from our guests.",
+      title: 'Best Price Guarantee',
+      description: 'We are happy to provide a best price to on smart packages.',
+      svg: 'best-price-guarantee',
     },
     {
-      img: (
-        <svg>
-          <use xlinkHref="/icons.svg#lowest_price" fill="currentColor" />
-        </svg>
-      ),
-      title: "Lowest Price Guarantee",
-      body: "We offer incredibly reasonable costs for all holiday activities focusing on the services we promise.",
+      title: '24/7 Support',
+      description:
+        'We have 24 hours of customer service with updated information.',
+      svg: '24-7-support',
     },
     {
-      img: (
-        <svg>
-          <use xlinkHref="/icons.svg#trekking_leader" fill="currentColor" />
-        </svg>
-      ),
-      title: "Local Leaders & Guides",
-      body: "We are proud to have our leaders and guides from the local sphere of the Himalayas.",
-    },
-    {
-      img: (
-        <svg>
-          <use xlinkHref="/icons.svg#calendar_check" fill="currentColor" />
-        </svg>
-      ),
-      title: "Sustainable Travel",
-      body: "Our trips are eco-friendly with careful use of local resources not disturbing the local culture and natural amenities.",
+      title: 'Your safety is our top priority',
+      description:
+        'In an utmost display of respect and impeccable show of concern',
+      svg: 'your-safety-is-our-top-priority',
     },
   ];
 
   return (
-    <div className={cn("", className)}>
-      <ul className="flex leading-[1.5] text-body justify-end items-center flex-wrap -m-2.5 [&>li]:p-2.5 md:[&>li]:flex-[0_0_50%] md:[&>li]:max-w-[50%] md:[&>li:nth-child(1)]:mb-[-40%] md:[&>li:nth-child(3)]:mb-[-40%]">
-        {value.map((item, index) => (
-          <li key={index}>
-            <div className="p-6 rounded border-t-2 border-t-secondary shadow-[0_0_2px] shadow-secondary/40 bg-white">
-              <span className="icon text-secondary h-8 w-8 md:h-[50px] md:w-[50px]">
-                {item.img}
-              </span>
-              <div className="text pt-3 text-sm">
-                <h3 className="text-md text-secondary mb-2.5 md:text-base lg:text-[1.125rem] font-semibold">
-                  {item.title}
-                </h3>
-                <p>{item.body}</p>
-              </div>
+    <div className={cn('', className)}>
+      <ul className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {services.map((itm, idx) => (
+          <li
+            key={idx}
+            className="flex gap-4">
+            <svg className="h-[45px] w-[45px] shrink-0">
+              <use xlinkHref={`/icons.svg#${itm.svg}`} />
+            </svg>
+            <div className="service-content">
+              <h3 className="font-medium text-headings">{itm.title}</h3>
+              <p className="text-muted text-sm mt-1">{itm.description}</p>
             </div>
           </li>
         ))}
