@@ -75,7 +75,7 @@ export default function CertificatesnPartners({
   return (
     <aside className={cn("affiliation", className)}>
         {title && (
-          <h3 className="uppercase mb-7 font-semibold text-headings text-[1.25rem] font-secondary">{title}</h3>
+          <h3 className="uppercase mb-7 font-semibold text-white/85 text-[1.25rem] font-secondary">{title}</h3>
         )}
         <Carousel className="affiliation-list [&>.overflow-hidden]:-mx-5">
           <CarouselContent className=" items-center ">
