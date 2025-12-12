@@ -9,11 +9,7 @@ interface TripModuleProps {
 }
 
 function TripModule({ tripData }: TripModuleProps) {
-  const {
-    package_title,
-    urlinfo,
-    featured,
-  } = tripData;
+  const { package_title, urlinfo, featured } = tripData;
 
   const slug = urlinfo.url_slug;
 
@@ -60,8 +56,11 @@ export default function TripOftheMonth({
     package_title,
     package_duration,
     package_duration_type,
-    group_default_price
+    group_default_price,
+    grade,
+    style,
   } = renderData;
+  console.log(style);
 
   const package_total_testimonials = total_testimonials || 10;
 
@@ -71,44 +70,59 @@ export default function TripOftheMonth({
         <TripModule tripData={renderData} />
         <div className="trip-of-the-month-meta lg:grid-cols-1  my-auto lg:-ml-6 z-30 py-6">
           <div className="title">
-            <span className='subtitle'>Trip Of the Month</span>
+            <span className="subtitle">Trip Of the Month</span>
             <h2>{package_title}</h2>
-
           </div>
-          <ul className="package-meta flex gap-6 items-center lg:pt-6 leading-[1.4] text-sm md:text-md">
+          <ul className="package-meta flex flex-wrap gap-6 items-center lg:pt-6 leading-[1.4] text-sm md:text-md">
             <li className="duration relative pl-10">
               <i className="icon h-8 w-8 top-1 absolute left-0">
                 <svg>
                   <use xlinkHref="/icons.svg#duration" />
                 </svg>
               </i>
-              <span className="block text-xs  font-medium">
-                Duration
-              </span>
+              <span className="block text-xs  font-medium">Duration</span>
               <span className="font-bold text-md capitalize">
-                {package_duration_type === "days"
-                  ? `${package_duration - 1} Nights ${package_duration} Days`
+                {package_duration_type === 'days'
+                  ? `${package_duration} Days`
                   : `${package_duration} ${package_duration_type}`}
               </span>
             </li>
             <li className="duration relative pl-10">
-              <i className="icon h-8 w-8  top-1 absolute left-0">
+              <i className="icon h-8 w-8 top-1 absolute left-0">
                 <svg>
-                  <use xlinkHref="/icons.svg#best-price" />
+                  <use xlinkHref="/icons.svg#grade" />
                 </svg>
               </i>
-              <span className="block text-xs  font-medium">
-                Price Starts From
+              <span className="block text-xs  font-medium">Grade</span>
+              <span className="font-bold text-md capitalize">
+                {grade?.title ? grade.title : ''}
               </span>
-              <span className="font-bold text-lg">
-                US ${group_default_price}
+            </li>
+            <li className="duration relative pl-10">
+              <i className="icon h-8 w-8 top-1 absolute left-0">
+                <svg>
+                  <use xlinkHref="/icons.svg#activity" />
+                </svg>
+              </i>
+              <span className="block text-xs  font-medium">Activity</span>
+              <span className="font-bold text-md capitalize">
+                {style?.title ? style.title : ''}
               </span>
             </li>
           </ul>
+          <div className="duration relative pl-10">
+            <i className="icon h-8 w-8  top-1 absolute left-0">
+              <svg>
+                <use xlinkHref="/icons.svg#best-price" />
+              </svg>
+            </i>
+            <span className="block text-xs  font-medium">
+              Price Starts From
+            </span>
+            <span className="font-bold text-lg">US ${group_default_price}</span>
+          </div>
         </div>
       </div>
-
-
     </section>
   );
 }
